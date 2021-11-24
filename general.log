@@ -1,0 +1,14 @@
+[2021-05-03 12:32:51 INFO]: install::setup-logging ended
+================
+[2021-05-03 12:32:51 INFO]: install::start-up started
+[2021-05-03 12:32:51 INFO]: install::start-up starting services
+[2021-05-03 12:32:51 INFO]: install::decompress started
+[2021-05-03 12:32:51 INFO]: install::decompress data_dump.tar.gz already decompressed
+[2021-05-03 12:32:51 INFO]: install::decompress ended
+================
+[2021-05-03 12:32:51 INFO]: install::decompress started
+[2021-05-03 12:32:51 INFO]: install::decompress log.tar.gz already decompressed
+[2021-05-03 12:32:51 INFO]: install::decompress ended
+================
+[2021-05-03 12:32:51 INFO]: install::decompress ended
+================

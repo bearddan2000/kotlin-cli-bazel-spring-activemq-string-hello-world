@@ -1,0 +1,41 @@
+version: '3.4'
+services:
+
+  java-srv:
+    build: java-srv
+    ports:
+      - "80:8080"
+    volumes:
+      - ./java-srv/bin:/usr/src/mymaven
+    depends_on:
+      - mq-srv
+
+  mq-srv:
+    image: webcenter/activemq:5.14.3
+    ports:
+      - "8161:8161"
+      - "61613:61613"
+      - "61616:61616"
+    volumes:
+      - ./mq-srv/data_dump:/data
+      - ./mq-srv/log:/var/log/activemq
+    environment:
+      - ACTIVEMQ_CONFIG_NAME=amqp-srv1
+      - ACTIVEMQ_CONFIG_DEFAULTACCOUNT=false
+      - ACTIVEMQ_ADMIN_LOGIN=admin
+      - ACTIVEMQ_ADMIN_PASSWORD=admin
+      - ACTIVEMQ_USERS_myproducer=producerpassword
+      - ACTIVEMQ_GROUPS_writes=myproducer
+      - ACTIVEMQ_USERS_myconsumer=consumerpassword
+      - ACTIVEMQ_GROUPS_reads=myconsumer
+      - ACTIVEMQ_JMX_user1_role=readwrite
+      - ACTIVEMQ_JMX_user1_password=jmx_password
+      - ACTIVEMQ_JMX_user2_role=read
+      - ACTIVEMQ_JMX_user2_password=jmx2_password
+      - ACTIVEMQ_CONFIG_TOPICS_topic1=mytopic1
+      - ACTIVEMQ_CONFIG_TOPICS_topic2=mytopic2
+      - ACTIVEMQ_CONFIG_QUEUES_queue1=myqueue1
+      - ACTIVEMQ_CONFIG_QUEUES_queue2=myqueue2
+      - ACTIVEMQ_CONFIG_MINMEMORY=1024
+      - ACTIVEMQ_CONFIG_MAXMEMORY=4096
+      - ACTIVEMQ_CONFIG_SCHEDULERENABLED=true
